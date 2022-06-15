@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<div>
+
+<form id="formOne">
+User Id: <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" maxlength="12" id="userName"> <p id="idvalid"></p> <br>
+<label for="fname"> First name:</label> <input type="text" name="fname"> <p id="fnamevalid"> <br>
+<label for="lname"> Last name:</label> <input type="text" name="lname"> <p id="lnamevalid"> <br>
+<label for="birthday"> Birthday:</label> <input type="date" id="birthday" placeholder="mm/dd/yyy"> <p id="datevalid">
+<input type="submit" onclick="dateDiff()" value="Accept">
+</form>
+
+<p id="xs"><p>
+
+</div>
+
+<script>
+
+function verifyUserId() {
+var correctIdFormat = /^([a-z])([A-Z]).{8,12}$/;
+var uId = document.getElementById("userName");
+if (uId.value.match(correctIdFormat)) {
+document.getElementById("idvalid").innerHTML = "Valid User Id";
+} else {
+document.getElementById("idvalid").innerHTML = "Invalid User Id"; }
+}
+
+function verifyFirstName(){
+let fn = document.forms["formOne"]["fname"].value;
+if (fn == "") {
+document.getElementById("fnamevalid").innerHTML = "Invalid Name";}
+
+}
+
+function verifyLastName(){
+let ln = document.forms["formOne"]["lname"].value;
+if (ln == "") {
+document.getElementById("lnamevalid").innerHTML = "Invalid Name";}
+
+}
+
+function dateDiff() {
+var age = document.getElementById("birthday");
+console.log(age);
+var d = new Date();
+var milliAlive = (d - age);
+daysBreathing = Math.floor(milliAlive/1000/60/60/24);
+let fname = document.forms["formOne"]["firstName"];
+let lname = document.forms["formOne"]["lastName"];
+document.getElementById("datevalid").innerHTML = fname + lname + " you have been breathing for " + daysBreathing + " days!"
+}
+
+function myFunction() {
+verifyUserId();
+verifyFirstName();
+verifyLastName();
+dateDiff();
+}
+
+for (let i = 0; i <= 20; i++) {
+let str = "";
+str = str.padStart(i, "X") + "<br>";
+document.write(str);
+}
+        
+</script>
+
+</body>
+</html>
+ 
